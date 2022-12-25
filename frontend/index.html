@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatGVD</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- <h2 class="mt-4 text-light">Transcript</h2>
+    <div class="p-3" style="border: 1px solid gray; height: 300px; border-radius: 8px;">
+      <span id="final" class="text-light"></span>
+      <span id="interim" class="text-secondary"></span>
+    </div>
+    <div class="mt-4">
+      <button class="btn btn-success" id="start">Start</button>
+      <button class="btn btn-danger" id="stop">Stop</button>
+      <p id="status" class="lead mt-3 text-light" style="display: none">Listenting ...</p>
+    </div> -->
+
+  <div id="app">
+    <div id="chat_container"></div>
+    <h3>This is an AI Chatbot built by Vishnudhasan Govindarajan!</h3>
+    <form>
+
+      <textarea id="textbox" name="prompt" rows="1" cols="1" placeholder="Ask me anything!"></textarea>
+      <button id="start-btn" type="submit"><img src="assets/send.svg" alt="send" />
+        <p id="instructions">Click the speak button</p>
+        <button id="speak-btn" type="button"><img src="assets/microphone.svg" alt="microphone" />
+          <button id="stop" type="button"><img src="assets/mic-off.svg" alt="microphone" />
+    </form>
+  </div>
+</body>
+
+<script type="module" src="main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</html>
