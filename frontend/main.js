@@ -116,6 +116,7 @@ form.addEventListener('submit', handleSubmit)
 form.addEventListener('keyup', (e) => {
     if (e.keyCode === 13) {
         handleSubmit(e)
+        content = '';
     }
 });
 
@@ -132,11 +133,7 @@ var content = '';
 recognition.continuous = true;
 
 recognition.onstart = function () {
-    instructions.text('Voice recognition activated. Try speaking into the microphone.');
-}
-
-recognition.onspeechend = function () {
-    instructions.text('You were quiet for a while so voice recognition turned itself off.');
+    instructions.text('Listening...');
 }
 
 recognition.onerror = function () {
@@ -156,52 +153,18 @@ $('#start-btn').on('click', function (e) {
     if (content.length) {
         content += ' ';
     }
+    recognition.stop();
+    instructions.text("Voice recognition paused. Click on the microphone to resume.");
+    content = '';
+})
+
+$('#speak-btn').on('click', function (e) {
+    if (content.length) {
+        content += ' ';
+    }
     recognition.start();
 })
 
-document.querySelector("#stop").onclick = () => {
-          speechRecognition.stop();
-        };
-
-// if ("webkitSpeechRecognition" in window) {
-//     let speechRecognition = new webkitSpeechRecognition();
-//     let final_transcript = "";
-  
-//     speechRecognition.continuous = true;
-//     speechRecognition.interimResults = true;
-  
-//     speechRecognition.onstart = () => {
-//       document.querySelector("#status").style.display = "block";
-//     };
-//     speechRecognition.onerror = () => {
-//       document.querySelector("#status").style.display = "none";
-//       console.log("Speech Recognition Error");
-//     };
-//     speechRecognition.onend = () => {
-//       document.querySelector("#status").style.display = "none";
-//       console.log("Speech Recognition Ended");
-//     };
-  
-//     speechRecognition.onresult = (event) => {
-//       let interim_transcript = "";
-  
-//       for (let i = event.resultIndex; i < event.results.length; ++i) {
-//         if (event.results[i].isFinal) {
-//           final_transcript += event.results[i][0].transcript;
-//         } else {
-//           interim_transcript += event.results[i][0].transcript;
-//         }
-//       }
-//       document.querySelector("#final").innerHTML = final_transcript;
-//       document.querySelector("#interim").innerHTML = interim_transcript;
-//     };
-  
-//     document.querySelector("#start").onclick = () => {
-//       speechRecognition.start();
-//     };
-//     document.querySelector("#stop").onclick = () => {
-//       speechRecognition.stop();
-//     };
-//   } else {
-//     console.log("Speech Recognition Not Available");
-//   }
+$('#stop').on('click', function (e) {
+    recognition.stop();
+})
